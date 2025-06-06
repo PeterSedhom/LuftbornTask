@@ -1,0 +1,38 @@
+<h2>Vikings</h2>
+
+<form (ngSubmit)="submitForm()" #vikingFormRef="ngForm">
+  <input type="text" [(ngModel)]="vikingForm.name" name="name" placeholder="Name" required />
+  <input type="number" [(ngModel)]="vikingForm.age" name="age" placeholder="Age" required min="0" />
+  <select [(ngModel)]="vikingForm.gender" name="gender" required>
+    <option *ngFor="let g of genderOptions" [ngValue]="g">{{ VikingGender[g] }}</option>
+  </select>
+  <select [(ngModel)]="vikingForm.rank" name="rank" required>
+    <option *ngFor="let r of rankOptions" [ngValue]="r">{{ VikingRank[r] }}</option>
+  </select>
+  <button type="submit">{{ isEdit ? 'Update' : 'Add' }} Viking</button>
+  <button type="button" *ngIf="isEdit" (click)="cancelEdit()">Cancel</button>
+</form>
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Rank</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let viking of vikings">
+      <td>{{ viking.name }}</td>
+      <td>{{ viking.age }}</td>
+      <td>{{ VikingGender[viking.gender] }}</td>
+      <td>{{ VikingRank[viking.rank] }}</td>
+      <td>
+        <button (click)="editViking(viking)">Edit</button>
+        <button (click)="deleteViking(viking.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

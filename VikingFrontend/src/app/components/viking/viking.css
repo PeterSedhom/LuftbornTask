@@ -1,0 +1,14 @@
+.form-row {
+    display: flex;
+    gap: 1em;
+    align-items: flex-start;
+  }
+  .form-row > div {
+    display: flex;
+    flex-direction: column;
+  }
+  .error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 0.2em;
+  }
